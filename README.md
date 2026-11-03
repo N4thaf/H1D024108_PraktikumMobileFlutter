@@ -6,9 +6,9 @@ Nama : Althaf Nadhif Saputra
 
 NIM : H1D024108
 
-Shift awal : H
+Shift awal : E
 
-Shift akhir : d
+Shift akhir : E
 
 ---
 
