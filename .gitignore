@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Gradle & Android
+.gradle/
+**/build/
+local.properties
+*.iml
+.idea/
+
+# Flutter & Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+flutter_01.log
