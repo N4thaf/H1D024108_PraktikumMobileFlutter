@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/login_page.dart';
+import 'package:flutter_application_1/ui/produk_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,16 +11,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Toko Kita',
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Menu',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
         ),
       ),
-      home: const LoginPage(),
+      home: const ProdukPage(),
     );
   }
 }

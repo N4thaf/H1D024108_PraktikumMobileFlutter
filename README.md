@@ -1,4 +1,4 @@
-# Praktikum Pemrograman Mobile - Modul 3
+# Praktikum Pemrograman Mobile - Modul 4
 
 **IDENTITAS**
 
@@ -12,18 +12,8 @@ Shift akhir : E
 
 ---
 
-**SCREENSHOT**
-
-<p align="center">
-  <img src="screenshots/login.png" alt="Tangkapan Layar Login" width="700"/>
-</p>
-
-<p align="center">
-  <img src="screenshots/home_sidemenu.png" alt="Tangkapan Layar Home Page dan Sidemenu" width="700"/>
-</p>
-
 **Deskripsi Non-Teknikal**  
-Aplikasi ini memiliki halaman login untuk memasukkan username dan password. Jika data yang dimasukkan benar, pengguna akan diarahkan ke halaman utama yang menampilkan nama user yang sedang login serta memiliki menu samping untuk berpindah ke halaman lain seperti home dan about.
+Aplikasi ini menyediakan halaman registrasi dan login untuk pengguna, serta halaman utama yang menampilkan daftar produk yang dijual. Pengguna dapat melihat rincian informasi setiap produk dengan memilih item pada daftar, menambah produk baru melalui tombol tambah, maupun mengubah dan menghapus data produk yang ada melalui form produk.
 
 **Deskripsi Teknikal**  
-Halaman login dibuat menggunakan form input teks untuk menangani input dari pengguna dan memanfaatkan shared preferences untuk menyimpan username ke dalam memori lokal perangkat. Untuk perpindahan antar halaman digunakan sistem navigasi route, sedangkan menu samping dibuat menggunakan komponen drawer yang berisi pilihan menu untuk berpindah halaman.
+Aplikasi ini dibuat menggunakan struktur model data untuk menampung informasi login, registrasi, dan produk. Tampilan antarmuka menggunakan form input yang dilengkapi dengan validasi teks agar input data dari pengguna sesuai, serta komponen daftar untuk menampilkan deretan kartu produk secara teratur. Perpindahan antar tampilan seperti menuju halaman detail dan form input diatur menggunakan sistem navigasi bawaan flutter.
