@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/bloc/produk_bloc.dart';
 import 'package:flutter_application_1/model/produk.dart';
 import 'package:flutter_application_1/ui/produk_form.dart';
+import 'package:flutter_application_1/ui/produk_page.dart';
+import 'package:flutter_application_1/widget/warning_dialog.dart';
 
 class ProdukDetail extends StatefulWidget {
   final Produk? produk;
@@ -35,7 +38,7 @@ class _ProdukDetailState extends State<ProdukDetail> {
               "Harga : Rp. ${widget.produk!.hargaProduk.toString()}",
               style: const TextStyle(fontSize: 18.0),
             ),
-            _tombolHapusEdit(),
+            _tombolHapusEdit()
           ],
         ),
       ),
@@ -47,22 +50,18 @@ class _ProdukDetailState extends State<ProdukDetail> {
       mainAxisSize: MainAxisSize.min,
       children: [
         OutlinedButton(
-          child: const Text("EDIT"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ProdukForm(
-                  produk: widget.produk!,
-                ),
-              ),
-            );
-          },
-        ),
+            child: const Text("EDIT"),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProdukForm(
+                            produk: widget.produk!,
+                          )));
+            }),
         OutlinedButton(
-          child: const Text("DELETE"),
-          onPressed: () => confirmHapus(),
-        ),
+            child: const Text("DELETE"),
+            onPressed: () => confirmHapus()),
       ],
     );
   }
@@ -73,12 +72,25 @@ class _ProdukDetailState extends State<ProdukDetail> {
       actions: [
         OutlinedButton(
           child: const Text("Ya"),
-          onPressed: () {},
+          onPressed: () {
+            ProdukBloc.deleteProduk(id: widget.produk!.id).then((value) {
+              if (!mounted) return;
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (BuildContext context) => const ProdukPage()));
+            }, onError: (error) {
+              if (!mounted) return;
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) => const WarningDialog(
+                        description: "Hapus data gagal, silahkan coba lagi",
+                      ));
+            });
+          },
         ),
         OutlinedButton(
           child: const Text("Batal"),
           onPressed: () => Navigator.pop(context),
-        ),
+        )
       ],
     );
 

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/bloc/login_bloc.dart';
+import 'package:flutter_application_1/helpers/user_info.dart';
+import 'package:flutter_application_1/ui/produk_page.dart';
 import 'package:flutter_application_1/ui/registrasi_page.dart';
+import 'package:flutter_application_1/widget/warning_dialog.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,6 +14,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   final _emailTextboxController = TextEditingController();
   final _passwordTextboxController = TextEditingController();
@@ -35,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 30,
                 ),
-                _menuRegistrasi(),
+                _menuRegistrasi()
               ],
             ),
           ),
@@ -75,11 +80,41 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buttonLogin() {
     return ElevatedButton(
-      child: const Text("Login"),
-      onPressed: () {
-        _formKey.currentState!.validate();
-      },
-    );
+        child: const Text("Login"),
+        onPressed: () {
+          var validate = _formKey.currentState!.validate();
+          if (validate) {
+            if (!_isLoading) _submit();
+          }
+        });
+  }
+
+  void _submit() {
+    _formKey.currentState!.save();
+    setState(() {
+      _isLoading = true;
+    });
+    LoginBloc.login(
+            email: _emailTextboxController.text,
+            password: _passwordTextboxController.text)
+        .then((value) async {
+      await UserInfo().setToken(value.token.toString());
+      await UserInfo().setUserID(int.parse(value.userID.toString()));
+      if (!mounted) return;
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const ProdukPage()));
+    }, onError: (error) {
+      if (!mounted) return;
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) => const WarningDialog(
+                description: "Login gagal, silahkan coba lagi",
+              ));
+    });
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   Widget _menuRegistrasi() {
@@ -90,12 +125,8 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(color: Colors.blue),
         ),
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const RegistrasiPage(),
-            ),
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const RegistrasiPage()));
         },
       ),
     );

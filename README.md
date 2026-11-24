@@ -77,3 +77,20 @@ Aplikasi ini menyediakan halaman registrasi dan login untuk pengguna, serta hala
 
 **Deskripsi Teknikal**  
 Aplikasi ini dibuat menggunakan struktur model data untuk menampung informasi login, registrasi, dan produk. Tampilan antarmuka menggunakan form input yang dilengkapi dengan validasi teks agar input data dari pengguna sesuai, serta komponen daftar untuk menampilkan deretan kartu produk secara teratur. Perpindahan antar tampilan seperti menuju halaman detail dan form input diatur menggunakan sistem navigasi bawaan flutter.
+
+---
+
+# Pertemuan 5
+
+**SCREENSHOT**
+
+<p align="center">
+  <img src="screenshots/modul5_login.png" alt="Tangkapan Layar Pertemuan 5" width="700"/>
+</p>
+
+**Deskripsi Non-Teknikal**  
+Aplikasi kini telah terhubung langsung dengan layanan server untuk mengelola data secara dinamis. Pengguna dapat mendaftarkan akun baru melalui halaman registrasi serta masuk ke dalam sistem menggunakan halaman login dengan memasukkan email dan password. Setelah berhasil masuk, aplikasi menampilkan daftar barang yang diambil langsung dari database server, di mana pengguna dapat melihat detail produk, menambahkan barang dagangan baru, memperbarui informasi barang yang sudah ada, maupun menghapus data produk dari sistem, serta keluar dari akun melalui menu logout.
+
+**Deskripsi Teknikal**  
+Pada modul ini dilakukan integrasi aplikasi dengan layanan antarmuka pemrograman aplikasi berbasis protokol http untuk menangani seluruh proses pertukaran data secara asinkron. Pengelolaan token otentikasi dan identitas pengguna disimpan ke dalam penyimpanan lokal perangkat agar sesi login tetap tersimpan. Arsitektur aplikasi diorganisasi menggunakan pemisahan logika bisnis yang bertugas menghubungkan form antarmuka pengguna dengan endpoint server untuk operasi registrasi, login, penarikan data, pengiriman data baru, pembaruan, hingga penghapusan data, lengkap dengan dialog notifikasi untuk memberi umpan balik status berhasil atau gagal kepada pengguna.
+
